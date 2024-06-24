@@ -1,0 +1,27 @@
+﻿@model Menu.Models.Dish;
+@{
+    ViewData["Title"] = @Model.Name + " Ingredients" ;
+}
+
+@* @Model here refers to the payload passed by Index route with ID, which means same as the Index page*@
+<div class="container">
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3 card border-radius-curved">
+        <div class="d-flex justify-content-center">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <img src="@Model.ImageURL" alt="@Model.Name" class="w-100" />
+                </div>
+                <div class="col-12 text-center bg-secondary text-light p-2">
+                    <strong><u>Ingredients</u></strong>
+                    @foreach (var item in Model.DishIngredients)
+                    {
+                        <div class="text-center text-light">@item.Ingredient.Name</div>
+                    }
+                </div>
+                <div class="col-12 p-0">
+                    <a asp-action="Index" class="btn btn-light w-100">Back to Menu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

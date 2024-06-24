@@ -25,3 +25,7 @@ body {
     border-radius: 18px;
     overflow: hidden;
 }
+
+.card.border-radius-curved {
+    border: 1px solid #bbb;
+}

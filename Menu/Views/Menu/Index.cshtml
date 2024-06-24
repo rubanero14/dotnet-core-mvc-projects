@@ -1,9 +1,9 @@
 ﻿@* Import model related to the View at the top of the page with right path as below *@
-@model List<Menu.Models.Dish>
+@model List<Menu.Models.Dish>;
 
 @* ViewData is used to assign any metadata of the page, in this context we are setting title of the page below *@
 @{
-    ViewData["Title"]="Menu";
+    ViewData["Title"] = "Menu";
 }
 
 @* Markup/Layout Section *@
@@ -24,6 +24,9 @@
                     </div>
                     <div class="col-12 bg-secondary">
                         <h5 class="text-center text-light">$@item.Price</h5>
+                    </div>
+                    <div class="col-12 col-12 p-0">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-light w-100">Check Ingredients</a>
                     </div>
                 </div>
             </div>
