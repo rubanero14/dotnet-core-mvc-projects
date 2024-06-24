@@ -1,7 +1,17 @@
+using Menu.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Source of learning FreeCodeCamp = https://youtu.be/6SAFgcMie4U
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// DB Connection Services for DB connection string
+builder.Services.AddDbContext<MenuContext>(option =>
+    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"))
+);
 
 var app = builder.Build();
 
