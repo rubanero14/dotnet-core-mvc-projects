@@ -51,7 +51,7 @@ namespace Menu.Data
                 new Ingredient { Id = 1, Name = "Mozarella Cheese" },
                 new Ingredient { Id = 2, Name = "Tomato Sauce" },
                 new Ingredient { Id = 3, Name = "Dough" },
-                new Ingredient { Id = 3, Name = "Basil" }
+                new Ingredient { Id = 4, Name = "Basil" }
             );
 
             // Adding both Dish and Ingredients to DishIngredients model and to the database

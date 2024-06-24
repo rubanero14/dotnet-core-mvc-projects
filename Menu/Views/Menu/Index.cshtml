@@ -1,0 +1,32 @@
+﻿@* Import model related to the View at the top of the page with right path as below *@
+@model List<Menu.Models.Dish>
+
+@* ViewData is used to assign any metadata of the page, in this context we are setting title of the page below *@
+@{
+    ViewData["Title"]="Menu";
+}
+
+@* Markup/Layout Section *@
+<div class="container">
+    <div class="row">
+        @* Model here in this context refers to @model List<Menu.Models.Dish> as above *@
+        @foreach (var item in Model)
+        {
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3 card border-radius-curved">
+                <div class="row">
+                    <div class="col-12 p-0">
+                        <img src="@item.ImageURL" alt="@item.Name" class="w-100" />
+                    </div>
+                    <div class="col-12 bg-secondary">
+                        <h2 class="text-center text-light mb-2">
+                            @item.Name
+                        </h2>
+                    </div>
+                    <div class="col-12 bg-secondary">
+                        <h5 class="text-center text-light">$@item.Price</h5>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
