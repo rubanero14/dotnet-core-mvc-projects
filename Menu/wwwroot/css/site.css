@@ -26,6 +26,14 @@ body {
     overflow: hidden;
 }
 
+.border-radius-curved h2 {
+    font-size: 18px;
+}
+
+.border-radius-curved h5 {
+    font-size: 15px;
+}
+
 .card.border-radius-curved {
     border: 1px solid #bbb;
 }

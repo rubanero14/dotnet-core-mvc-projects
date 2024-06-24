@@ -12,8 +12,8 @@
         @* Model here in this context refers to @model List<Menu.Models.Dish> as above *@
         @foreach (var item in Model)
         {
-            <div class="col-12 col-md-6 col-lg-4 col-xl-3 card border-radius-curved">
-                <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
+                <div class="row card border-radius-curved me-2">
                     <div class="col-12 p-0">
                         <img src="@item.ImageURL" alt="@item.Name" class="w-100" />
                     </div>
