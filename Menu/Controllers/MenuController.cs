@@ -17,7 +17,7 @@ namespace Menu.Controllers
         {
             var dishes = from d in _menuContext.Dishes select d;
 
-            if(!string.IsNullOrEmpty(searchMenu)) /*56:16*/
+            if(!string.IsNullOrEmpty(searchMenu))
             {
                 dishes = dishes.Where(dish =>  dish.Name.Contains(searchMenu));
 
