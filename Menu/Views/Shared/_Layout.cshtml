@@ -28,7 +28,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
                         </li>*@
-                        <li class="nav-item">
+                        <li class="nav-item me-3">
                             @* Can use form to filter data and display what needed to see *@
                             <form asp-controller="Menu" asp-action="Index" method="get">
                                 <div class="input-group w-100 mt-3 mt-sm-0">
@@ -38,6 +38,9 @@
                                     </div>
                                 </div>
                             </form>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TSChart" asp-action="Index">TS Chart</a>
                         </li>
                     </ul>
                 </div>
