@@ -9,10 +9,9 @@
          <div class="col-12 col-md-6 col-lg-4 col-xl-3 card border-radius-curved">
             <div class="row">
                 <div class="col-12 text-center text-secondary py-2">
-                    <h3 class="mb-0">@Model.Name</h3>
+                    <h5 class="mb-0">Ingredients for: @Model.Name</h5>
                 </div>
                 <div class="col-12 text-center bg-secondary text-light p-2">
-                    <strong><u>Ingredients</u></strong>
                     @foreach (var item in Model.DishIngredients)
                     {
                         <div class="text-center text-light">@item.Ingredient.Name</div>

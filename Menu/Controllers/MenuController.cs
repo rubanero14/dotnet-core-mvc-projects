@@ -2,6 +2,7 @@
 using Menu.Data;
 using Menu.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Menu.Controllers
 {
@@ -12,9 +13,17 @@ namespace Menu.Controllers
         public MenuController(MenuContext menuContext) {
             _menuContext = menuContext;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchMenu)
         {
-            return View(await _menuContext.Dishes.ToListAsync());
+            var dishes = from d in _menuContext.Dishes select d;
+
+            if(!string.IsNullOrEmpty(searchMenu)) /*56:16*/
+            {
+                dishes = dishes.Where(dish =>  dish.Name.Contains(searchMenu));
+
+                return View(await dishes.ToListAsync());
+            }
+            return View(await dishes.ToListAsync());
         }
 
         public async Task<IActionResult> Details(int? id) 

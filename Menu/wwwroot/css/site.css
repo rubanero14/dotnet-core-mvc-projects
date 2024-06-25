@@ -37,3 +37,8 @@ body {
 .card.border-radius-curved {
     border: 1px solid #bbb;
 }
+
+.input-group-append .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
