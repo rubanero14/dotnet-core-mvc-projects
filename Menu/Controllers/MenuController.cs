@@ -8,11 +8,12 @@ namespace Menu.Controllers
 {
     public class MenuController : Controller
     {
-        // Injecting Model into View using context constructor
+        // Injecting Data into Controller using context constructor
         private readonly MenuContext _menuContext;
         public MenuController(MenuContext menuContext) {
             _menuContext = menuContext;
         }
+
         public async Task<IActionResult> Index(string searchMenu)
         {
             var dishes = from d in _menuContext.Dishes select d;
