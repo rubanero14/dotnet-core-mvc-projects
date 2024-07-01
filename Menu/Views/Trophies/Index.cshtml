@@ -1,0 +1,203 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+    body {
+  padding: 30px;
+}
+
+html, body, main {
+  min-height: 100%
+}
+
+h1 {
+  font-size: 25px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+.title {
+  font-weight: bold;
+  
+  &.text-sm{
+    width: 280px;
+  }
+}
+
+.card {
+  padding: 30px 30px;
+  border: 1px solid #62635d;
+  border-radius: 25px;
+  min-height: 300px
+}
+
+.btn-custom {
+  background: #feb413;
+  border-radius: 6px;
+  padding: 5px 8px;
+  box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.22);
+  font-weight: 800;
+  font-size: 11px;
+  
+  &.btn-sm {
+    border-radius: 3px;
+    padding: 3px 5px;
+    font-size: 8px;
+    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.22);
+    width: 150px;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 .25rem #eed08e;
+  }
+}
+
+.locked {
+  img {
+    opacity: 0.3;
+    filter: grayscale(100);
+    pointer-events: none;
+  }
+}
+
+@@media only screen and (max-width: 576px) {
+  .title.text-sm,
+  .btn-custom.btn-sm {
+    width: 100%;
+  }
+}
+</style>
+<main class="container py-5">
+  <div class="row">
+      <div class="col-12">
+        <h1 class="title pt-2 mb-0">
+            Welcome, Jane !
+        </h1>
+      </div>
+      <div class="col-12">
+         <p>
+            To date, you've enjoyed <b>$1094</b> of suprise bonuses for being a TribePlus member!
+         </p>
+      </div>
+    <div class="col-12">
+      <button class="text-start btn btn-custom mb-5">Display My Bonuses</button>
+    </div>
+  </div> 
+  <div class="row">
+    <div class="col-12">
+      <h2 class="title mb-3">Achievements</h2>
+    </div>
+    <div class="col-12">
+      <div class="card w-100 mb-5">
+          <div class="d-inline-block text-center text-sm-start d-sm-flex justify-content-start align-items-center mb-3">
+            <h3 class="title text-sm me-3">Core Achievement</h3>
+            <button class="btn btn-custom btn-sm">Share My Achievement</button>
+          </div>
+          <div class="achievements d-flex justify-content-apart flex-wrap mb-5">
+          </div>
+          <div class="d-inline-block text-center text-sm-start d-sm-flex justify-content-start align-items-center mb-3">
+            <h3 class="title text-sm me-3">Limited Edition Achievements</h3>
+            <button class="btn btn-custom btn-sm">Share My Achievement</button>
+          </div>
+          <div class="limited-addition d-flex justify-content-apart flex-wrap">
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-12">
+      <h2 class="title mb-3">To Be Unlocked</h2>
+    </div>
+    <div class="col-12">
+      <div class="card w-100 mb-4">
+          <div class="locked d-flex justify-content-apart flex-wrap">
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+<h2 class="output"></h2>
+<script>
+    const achievements = document.querySelector('.achievements');
+    const limitedEdition = document.querySelector('.limited-addition');
+    const locked = document.querySelector('.locked');
+    const h2 = document.querySelector('.output');
+
+    const achievementTrophies = [
+        '11226/11226922',
+        '11167/11167974',
+        '11167/11167972',
+        '11167/11167934',
+        '9802/9802249',
+        '11227/11227064',
+        '9663/9663798',
+        '13540/13540468'
+    ];
+
+    const limitedEditionTrophies = [
+        '11227/11227163',
+        '11300/11300240',
+        '11300/11300374',
+        '11870/11870079',
+        '11870/11870137'
+    ];
+
+    const lockedTrophies = [
+        '11226/11226922',
+        '11167/11167974',
+        '11167/11167972',
+        '11167/11167934',
+        '9802/9802249',
+    ];
+
+    async function populateTrophies(wrapper, imageKeys) {
+        const fragment = document.createDocumentFragment();
+        imageKeys.forEach(key => {
+            const uri = `https://cdn-icons-png.flaticon.com/128/${key}.png`;
+            const img = document.createElement('img');
+
+            img.setAttribute('src', uri);
+            img.setAttribute('class', 'me-3 mb-3');
+            img.setAttribute('loading', 'lazy');
+            img.setAttribute('onclick', `shareImageAsset("${img.src}", "JY Achievment Unlocked")`);
+            fragment.appendChild(img);
+        });
+        wrapper.appendChild(fragment);
+    };
+
+    populateTrophies(achievements, achievementTrophies);
+    populateTrophies(limitedEdition, limitedEditionTrophies);
+    populateTrophies(locked, lockedTrophies);
+
+    /****************************************************/
+    async function shareImageAsset(url, title) {
+        const response = await fetch(url.toString());
+        const blob = await response.blob();
+
+        const fileName = url.split("/").pop();
+        const fileNameTrue = fileName ? fileName : "image";
+        const filesArray = [
+            new File([blob], fileNameTrue, {
+                type: blob.type,
+                lastModified: Date.now(),
+            })];
+        const shareData = {
+            title,
+            text: 'Come Join Us in JY',
+            files: filesArray,
+        };
+        if (navigator.canShare && await navigator.canShare(shareData)) {
+            h2.innerText = navigator.canShare && navigator.canShare(shareData);
+            await navigator.share(shareData);
+        };
+    };
+</script>
